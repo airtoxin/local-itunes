@@ -1,0 +1,16 @@
+{
+  "name": "local-itunes",
+  "version": "0.0.1",
+  "description": "control itunes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "itunes",
+    "mac",
+    "music"
+  ],
+  "author": "airtoxin <airtoxin@icloud.com>",
+  "license": "MIT"
+}
