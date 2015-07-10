@@ -12,5 +12,8 @@
     "music"
   ],
   "author": "airtoxin <airtoxin@icloud.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "osascript": "^1.0.0"
+  }
 }
