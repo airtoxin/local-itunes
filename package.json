@@ -1,6 +1,6 @@
 {
   "name": "local-itunes",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "control itunes",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "mac",
     "music"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/airtoxin/local-itunes"
+  },
   "author": "airtoxin <airtoxin@icloud.com>",
   "license": "MIT",
   "dependencies": {
