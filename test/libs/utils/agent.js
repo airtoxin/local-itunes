@@ -37,6 +37,17 @@ describe('agent.js', function () {
 			agent.execute();
 			done();
 		});
+		it('should return trimed string result', function (done) {
+			agent.osascript = function (script, callback) {
+				callback(null, 'hoge\n  ');
+			};
+
+			agent.execute('name', function (error, result) {
+				assert.ok(!error);
+				assert.strictEqual(result, 'hoge');
+				done();
+			});
+		});
 	});
 
 	describe('executeMeny', function () {

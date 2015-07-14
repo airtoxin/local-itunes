@@ -1,9 +1,11 @@
-var script = 'Application("iTunes").playerState();'
+var path = require('path');
+var async = require('neo-async');
+var agent = require(path.join(__dirname, 'utils', 'agent'));
 
 module.exports = {
-	osascript: require('osascript').eval,
+	agent: agent,
+	methodPath: 'playerState',
 	main: function (callback) {
-		if (typeof callback !== 'function') callback = function(){};
-		this.osascript(script, callback);
+		this.agent.execute(this.methodPath, callback);
 	}
 };

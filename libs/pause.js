@@ -1,9 +1,11 @@
-var script = 'Application("iTunes").pause();'
+var path = require('path');
+var async = require('neo-async');
+var agent = require(path.join(__dirname, 'utils', 'agent'));
 
 module.exports = {
-	osascript: require('osascript').eval,
+	agent: agent,
+	methodPath: 'pause',
 	main: function (callback) {
-		if (typeof callback !== 'function') callback = function(){};
-		this.osascript(script, callback);
+		this.agent.execute(this.methodPath, callback);
 	}
 };

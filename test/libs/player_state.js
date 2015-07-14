@@ -1,43 +1,50 @@
 var assert = require('assert');
 var path = require('path');
-var osascript = require('osascript').eval;
 var root = path.join(__dirname, '..', '..');
+var agent = require(path.join(root, 'libs', 'utils', 'agent.js'));
 
-var cp = require(path.join(root, 'libs', 'player_state.js'));
+var p = require(path.join(root, 'libs', 'player_state.js'));
 
 describe('player_state.js', function () {
+	describe('agent', function () {
+		it('should be object', function (done) {
+			assert.strictEqual(typeof p.agent, 'object');
+			done();
+		});
+	});
+
 	describe('main', function () {
 		afterEach(function (done) {
-			cp.osascript = osascript;
+			p.agent = agent;
 			done();
 		});
 		it('should be function', function (done) {
-			assert.strictEqual(typeof cp.main, 'function');
+			assert.strictEqual(typeof p.main, 'function');
 			done();
 		});
-		it('should return error when script returns error', function (done) {
-			cp.osascript = function (script, callback) {
-				callback('error');
+		it('should return error when agent.execute returns error', function (done) {
+			p.agent = {
+				execute: function (methodPath, callback) {
+					callback('error');
+				}
 			};
-			cp.main(function (error) {
+
+			p.main(function (error) {
 				assert.ok(error);
 				done();
 			});
 		});
-		it('should do none when callback was not set', function (done) {
-			cp.osascript = function (script, callback) {
-				callback();
+		it('should call agent.execute', function (done) {
+			p.agent = {
+				execute: function (methodPath, callback) {
+					assert.strictEqual(methodPath, p.methodPath);
+					callback(null, 'stopped');
+				}
 			};
-			cp.main();
-			done();
-		});
-		it('should return exact result', function (done) {
-			cp.osascript = function (script, callback) {
-				callback(null, 'result text');
-			};
-			cp.main(function (error, result) {
+
+			p.main(function (error, result) {
 				assert.ok(!error);
-				assert.strictEqual(result, 'result text');
+				assert.ok(result, 'stopped');
 				done();
 			});
 		});

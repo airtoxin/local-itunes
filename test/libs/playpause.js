@@ -1,41 +1,48 @@
 var assert = require('assert');
 var path = require('path');
-var osascript = require('osascript').eval;
 var root = path.join(__dirname, '..', '..');
+var agent = require(path.join(root, 'libs', 'utils', 'agent.js'));
 
-var cp = require(path.join(root, 'libs', 'playpause.js'));
+var p = require(path.join(root, 'libs', 'playpause.js'));
 
 describe('playpause.js', function () {
+	describe('agent', function () {
+		it('should be object', function (done) {
+			assert.strictEqual(typeof p.agent, 'object');
+			done();
+		});
+	});
+
 	describe('main', function () {
 		afterEach(function (done) {
-			cp.osascript = osascript;
+			p.agent = agent;
 			done();
 		});
 		it('should be function', function (done) {
-			assert.strictEqual(typeof cp.main, 'function');
+			assert.strictEqual(typeof p.main, 'function');
 			done();
 		});
-		it('should return error when script returns error', function (done) {
-			cp.osascript = function (script, callback) {
-				callback('error');
+		it('should return error when agent.execute returns error', function (done) {
+			p.agent = {
+				execute: function (methodPath, callback) {
+					callback('error');
+				}
 			};
-			cp.main(function (error) {
+
+			p.main(function (error) {
 				assert.ok(error);
 				done();
 			});
 		});
-		it('should do none when callback was not set', function (done) {
-			cp.osascript = function (script, callback) {
-				callback();
+		it('should call agent.execute', function (done) {
+			p.agent = {
+				execute: function (methodPath, callback) {
+					assert.strictEqual(methodPath, p.methodPath);
+					callback();
+				}
 			};
-			cp.main();
-			done();
-		});
-		it('should return none', function (done) {
-			cp.osascript = function (script, callback) {
-				callback();
-			};
-			cp.main(function (error) {
+
+			p.main(function (error) {
 				assert.ok(!error);
 				done();
 			});

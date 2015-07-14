@@ -10,7 +10,11 @@ var Agent = (function () {
 		self.execute = function (methodPath, callback) {
 			var script = 'Application("iTunes").' + methodPath + '();';
 			callback = callback || function(){};
-			self.osascript(script, callback);
+			self.osascript(script, function (error, result) {
+				if (error) return callback(error);
+				if (typeof result !== 'string') return callback(error, '');
+				callback(error, result.trim());
+			});
 		};
 
 		self.executeMeny = function (objectPath, methodNames, callback) {
