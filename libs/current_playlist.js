@@ -1,6 +1,13 @@
 var async = require('neo-async');
 
 var properties = [
+	'class',
+	'container',
+	'id',
+	'index',
+	'name',
+	'persistentID',
+	'properties',
 	'duration',
 	'name',
 	'loved',

@@ -1,6 +1,6 @@
 {
   "name": "local-itunes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "control itunes",
   "main": "index.js",
   "scripts": {
