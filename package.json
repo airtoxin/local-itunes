@@ -4,7 +4,7 @@
   "description": "control itunes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R spec --recursive test"
   },
   "keywords": [
     "itunes",
@@ -17,5 +17,8 @@
     "neo-async": "^1.2.1",
     "osascript": "^1.0.0",
     "require-dir": "^0.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
   }
 }
