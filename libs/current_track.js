@@ -1,4 +1,3 @@
-var osascript = require('osascript').eval;
 var async = require('neo-async');
 
 var properties = [
