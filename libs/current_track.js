@@ -74,18 +74,20 @@ var cast = function (data) {
 	return data;
 };
 
-module.exports = function (callback) {
-	if (typeof callback !== 'function') callback = function(){};
+module.exports = {
+	main: function (callback) {
+		if (typeof callback !== 'function') callback = function(){};
 
-	var result = {};
-	async.each(properties, function (property, next) {
-		var script = OSA_BASE + '.' + property + '();';
-		osascript(script, function (error, data) {
-			if (error) return next(error);
-			result[property] = cast(data.trim());
-			next();
+		var result = {};
+		async.each(properties, function (property, next) {
+			var script = OSA_BASE + '.' + property + '();';
+			osascript(script, function (error, data) {
+				if (error) return next(error);
+				result[property] = cast(data.trim());
+				next();
+			});
+		}, function (error) {
+			callback(error, result);
 		});
-	}, function (error) {
-		callback(error, result);
-	});
+	}
 };
