@@ -1,4 +1,4 @@
-# local-itunes [![Build Status](https://travis-ci.org/airtoxin/local-itunes.svg?branch=master)](https://travis-ci.org/airtoxin/local-itunes)
+# local-itunes [![NPM](https://nodei.co/npm/local-itunes.png)](https://nodei.co/npm/local-itunes/) [![Build Status](https://travis-ci.org/airtoxin/local-itunes.svg?branch=master)](https://travis-ci.org/airtoxin/local-itunes)
 
 control itunes
 
