@@ -2,6 +2,19 @@
 
 control itunes
 
+## Install
+
+`npm i local-itunes`
+
+## Usage
+
+```javascript
+var iTunes = require('local-itunes');
+iTunes.playerState(function(error, state){
+  if (state === 'paused') iTunes.play();
+});
+```
+
 ## Documents
 
 ### play(callback)
@@ -44,7 +57,7 @@ __callback(error, data);__
 
 `data`: track data object.
 
-```
+```javascript
 { 
   album: 'airtoxin',
   albumArtist: '',
@@ -116,7 +129,7 @@ Get current playing playlist informations.
 
 `data`: track data object.
 
-```
+```javascript
 { 
   duration: 111226,
   songRepeat: 'off',
