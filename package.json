@@ -14,6 +14,8 @@
   "author": "airtoxin <airtoxin@icloud.com>",
   "license": "MIT",
   "dependencies": {
-    "osascript": "^1.0.0"
+    "neo-async": "^1.2.1",
+    "osascript": "^1.0.0",
+    "require-dir": "^0.3.0"
   }
 }

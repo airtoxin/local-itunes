@@ -1,1 +1,0 @@
-Application('iTunes').pause();
