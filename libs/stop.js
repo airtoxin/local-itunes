@@ -1,10 +1,9 @@
-var osascript = require('osascript').eval;
-
 var script = 'Application("iTunes").stop();'
 
 module.exports = {
+	osascript: require('osascript').eval,
 	main: function (callback) {
 		if (typeof callback !== 'function') callback = function(){};
-		osascript(script, callback);
+		this.osascript(script, callback);
 	}
 };
