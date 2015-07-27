@@ -41,6 +41,18 @@ Toggle play/pause.
 
 __callback(error);__
 
+### previous(callback);
+
+Go to the beginning of the song or previous song if playback is already at the beginning.
+
+__callback(error);__
+
+### next(callback);
+
+Go to next song.
+
+__callback(error);__
+
 ### playerState(callback)
 
 Get current iTunes state.

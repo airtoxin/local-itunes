@@ -8,6 +8,8 @@ module.exports = {
 	pause: itunes.pause.main.bind(itunes.pause),
 	playpause: itunes.playpause.main.bind(itunes.playpause),
 	stop: itunes.stop.main.bind(itunes.stop),
+	previous: itunes.stop.main.bind(itunes.previous),
+	next: itunes.stop.main.bind(itunes.next),
 	currentTrack: itunes.current_track.main.bind(itunes.current_track),
 	currentPlaylist: itunes.current_playlist.main.bind(itunes.current_playlist)
 };
