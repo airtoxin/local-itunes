@@ -4,11 +4,11 @@ var osascript = require('osascript').eval;
 var Agent = (function () {
 	return function () {
 		var self = this;
-		self.BASE = 'Application("iTunes")';
+		self.BASE = 'Application("Music")';
 		self.osascript = osascript;
 
 		self.execute = function (methodPath, callback) {
-			var script = 'Application("iTunes").' + methodPath + '();';
+			var script = 'Application("Music").' + methodPath + '();';
 			callback = callback || function(){};
 			self.osascript(script, function (error, result) {
 				if (error) return callback(error);
