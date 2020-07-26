@@ -1,14 +1,19 @@
 var async = require('neo-async');
 var osascript = require('osascript').eval;
+var os = require('os');
 
 var Agent = (function () {
 	return function () {
 		var self = this;
-		self.BASE = 'Application("iTunes")';
+		if (parseFloat(os.release()) > 19){
+			self.BASE = 'Application("Music")';
+		} else {
+			self.BASE = 'Application("iTunes")';
+		}
 		self.osascript = osascript;
 
 		self.execute = function (methodPath, callback) {
-			var script = 'Application("iTunes").' + methodPath + '();';
+			var script = self.BASE + '.' + methodPath + '();';
 			callback = callback || function(){};
 			self.osascript(script, function (error, result) {
 				if (error) return callback(error);
